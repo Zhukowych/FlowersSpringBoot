@@ -9,12 +9,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public final class FlowerSpecification {
 
-    private final FlowerType flowerType;
+    private final String name;
     private final FlowerColor color;
 
 
     public boolean match(FlowerSpecification flowerSpecification) {
-        if (flowerType != null && flowerSpecification.getFlowerType() != flowerType) {
+        if (name != null && flowerSpecification.getName() != name) {
             return false;
         }
 

@@ -1,5 +1,9 @@
 package org.example.springflowerstore.flower;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,22 +13,35 @@ import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @EqualsAndHashCode
 @AllArgsConstructor
 public class Flower {
 
-    private FlowerType flowerType;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
     private FlowerColor color;
     private double price;
     private double sepalLength;
+    private boolean isAvailable;
 
-    public Flower(FlowerType flowerType) {
-        this.flowerType = flowerType;
+    public Flower(String name) {
+        this.name = name;
+    }
+
+    public Flower(String name, FlowerColor color, double sepalLength, double price) {
+        this.name = name;
+        this.color = color;
+        this.sepalLength = sepalLength;
+        this.price = price;
     }
 
     public Flower(Flower flower) {
-        this.flowerType = flower.flowerType;
+        this.name = flower.name;
         this.color = flower.color;
         this.price = flower.price;
         this.sepalLength = flower.sepalLength;
@@ -35,7 +52,7 @@ public class Flower {
     }
 
     public FlowerSpecification getSpecification() {
-        return new FlowerSpecification(this.flowerType, this.color);
+        return new FlowerSpecification(this.name, this.color);
     }
 
 }

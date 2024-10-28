@@ -22,7 +22,7 @@ public class FlowerPack {
 
     @Override
     public String toString() {
-        return String.format("FlowerPack<type=%s, amount=%s>", flower.getFlowerType(), amount);
+        return String.format("FlowerPack<type=%s, amount=%s>", flower.getName(), amount);
     }
 
 }

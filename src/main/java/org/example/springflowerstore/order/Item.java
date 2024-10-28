@@ -1,7 +1,11 @@
 package org.example.springflowerstore.order;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.springflowerstore.flower.FlowerBucket;
 
+@Getter
+@Setter
 public class Item {
 
     private FlowerBucket flowerBucket;

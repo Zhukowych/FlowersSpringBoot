@@ -1,27 +1,31 @@
 package org.example.springflowerstore.controller;
 
 import org.example.springflowerstore.flower.Flower;
-import org.example.springflowerstore.flower.FlowerColor;
-import org.example.springflowerstore.flower.FlowerType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.springflowerstore.service.FlowerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
 public class FlowerController {
 
+    public FlowerService flowerService;
+
+    @Autowired
+    public FlowerController(FlowerService flowerService) {
+        this.flowerService = flowerService;
+    }
 
     @GetMapping("flowers/")
-    public List<Flower> getGlowers() {
-        List<Flower> sampleFlowers = new ArrayList<>();
-        sampleFlowers.add(new Flower(FlowerType.ROSE, FlowerColor.RED, 10, 10));
-        sampleFlowers.add(new Flower(FlowerType.CHAMOMILE, FlowerColor.RED, 10, 10));
-        sampleFlowers.add(new Flower(FlowerType.TULIP, FlowerColor.RED, 10, 10));
-        return sampleFlowers;
+    public List<Flower> getFlowers() {
+        return flowerService.getFlowers();
+    }
+
+    @PostMapping("add_flower/")
+    public Flower addFlower(@RequestBody Flower flower) {
+        return flowerService.createFlower(flower);
     }
 
 }
