@@ -1,7 +1,7 @@
 package org.example.springflowerstore.service;
 
 import org.example.springflowerstore.repository.UserRepository;
-import org.example.springflowerstore.user.User;
+import org.example.springflowerstore.user.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +17,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<AppUser> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User createUser(User user) {
+    public AppUser createUser(AppUser user) {
         return userRepository.save(user);
     }
 

@@ -1,9 +1,8 @@
 package org.example.springflowerstore.controller;
 
-import org.example.springflowerstore.flower.Flower;
 import org.example.springflowerstore.service.FlowerService;
 import org.example.springflowerstore.service.UserService;
-import org.example.springflowerstore.user.User;
+import org.example.springflowerstore.user.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +20,12 @@ public class UserController {
     }
 
     @GetMapping("users/")
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping("add_user/")
-    public User addUser(@RequestBody User user) {
+    public AppUser addUser(@RequestBody AppUser user) {
         return userService.createUser(user);
     }
 
